@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooprogress-bin
+_pkgname=ooprogress
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Piped progress bar listener updating terminals cleanly from concurrent streams."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooprogress"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooprogress')
+conflicts=('ooprogress')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooprogress-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooprogress-linux-x86_64" "${pkgdir}/usr/bin/ooprogress"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooprogress-uninstall"
+}
